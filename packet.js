@@ -142,13 +142,36 @@ function getAnchorChildren(){
         }
       })
     })
-  }
+}
 
-  function getHobbies(){
+function getHobbies(){
     let elements = document.querySelectorAll('select[name="hobbies"]');
     let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
     hobbies.forEach(element => {
       console.log(element.textContent);
     });
-  }
+}
 
+let skillset = document.querySelector('select[name="skills"]');
+let skillsubset = skillset.childNodes;
+skillset.setAttribute('onchange','onSkillChange(this)');
+
+function onSkillChange(id){
+  alert("Are you sure "+id.value+" is a skill of yours?");
+};
+
+let lastColor = null;
+let colors = document.querySelectorAll("input[name='favoriteColor']");
+[].forEach.call(colors,(color)=>{
+    if (color.checked){
+        lastColor = color.value;
+    }
+    color.setAttribute('onclick','onFavoriteColor(this)');
+
+})
+
+
+function onFavoriteColor(id){
+    console.log("old:" + lastColor+" new:"+id.value);
+    lastColor = id.value;
+}

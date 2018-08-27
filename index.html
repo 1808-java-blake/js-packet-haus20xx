@@ -106,70 +106,138 @@
           console.log(element.childNodes[0].nodeValue)
       });
     }
-function getPeopleInSales(){
-    let empl = [...document.getElementsByClassName('empName')];
-    let emplStat = [];
-    empl.forEach(element => {
-        if (element.nextElementSibling.innerHTML === "Sales"){
-            console.log(element.innerHTML);
+  function getPeopleInSales(){
+      let empl = [...document.getElementsByClassName('empName')];
+      let emplStat = [];
+      empl.forEach(element => {
+          if (element.nextElementSibling.innerHTML === "Sales"){
+              console.log(element.innerHTML);
+          }
+      });
+  }
+  function getAnchorChildren(){
+    let anchors = [...document.getElementsByTagName('a')]
+    let anchorChild = [];
+    anchors.forEach(element =>{
+      element.childNodes.forEach(child =>{
+        if (child.nodeName === "SPAN"){
+          console.log(child.innerHTML);
         }
-    });
-}
-function getAnchorChildren(){
-  let anchors = [...document.getElementsByTagName('a')]
-  let anchorChild = [];
-  anchors.forEach(element =>{
-    element.childNodes.forEach(child =>{
-      if (child.nodeName === "SPAN"){
-        console.log(child.innerHTML);
-      }
+      })
     })
-  })
-}
+  }
 
-function getHobbies(){
-  let elements = document.querySelectorAll('select[name="hobbies"]');
-  let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
-  hobbies.forEach(element => {
-    console.log(element.textContent);
+  function getHobbies(){
+    let elements = document.querySelectorAll('select[name="hobbies"]');
+    let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
+    hobbies.forEach(element => {
+      console.log(element.textContent);
+    });
+  }
+
+  function getCustomAttribute(){
+    let elements = document.querySelectorAll('[data-customAttr]');
+    elements.forEach(element => {
+      let val = element.getAttribute('data-customAttr');
+      console.log(val);
+      console.log(element);
+    });
+  }
+
+  let sumParts = [...document.getElementsByClassName('nums')];
+  sumParts.forEach(element => {
+    element.setAttribute('onchange','onNumberChange(this)');
   });
-}
 
-function getCustomAttribute(){
-  let elements = document.querySelectorAll('[data-customAttr]');
-  elements.forEach(element => {
-    let val = element.getAttribute('data-customAttr');
-    console.log(val);
-    console.log(element);
-  });
-}
-
-let sumParts = [...document.getElementsByClassName('nums')];
-sumParts.forEach(element => {
-  element.setAttribute('onchange','onChange(this)');
-});
-
-function onChange(id){
-  let elements = document.getElementsByClassName('nums');
-  let numbers = [];
-  [].forEach.call(elements,(element) => {
-    numbers.push(+element.value);
-  });
-  let arentNumbers = numbers.some(num=>{
-    if(typeof(num)!=='number' || Number.isNaN(num)){
-      return true;
+  function onNumberChange(id){
+    let elements = document.getElementsByClassName('nums');
+    let numbers = [];
+    [].forEach.call(elements,(element) => {
+      numbers.push(+element.value);
+    });
+    let arentNumbers = numbers.some(num=>{
+      if(typeof(num)!=='number' || Number.isNaN(num)){
+        return true;
+      }
+    });
+    let e = document.getElementById('sum');
+    if (arentNumbers === false){
+      e.innerText = numbers[0]+numbers[1];
     }
-  });
-  let e = document.getElementById('sum');
-  if (arentNumbers === false){
-    e.innerText = numbers[0]+numbers[1];
+    else{
+      e.innerText='Cannot add';
+    }
   }
-  else{
-    e.innerText='Cannot add';
+
+  let skillset = document.querySelector('select[name="skills"]');
+  let skillsubset = skillset.childNodes;
+  skillset.setAttribute('onchange','onSkillChange(this)');
+
+  function onSkillChange(id){
+    alert("Are you sure "+id.value+" is a skill of yours?");
   }
+
+  let lastColor = null;
+  let colors = document.querySelectorAll("input[name='favoriteColor']");
+  [].forEach.call(colors,(color)=>{
+      if (color.checked){
+          lastColor = color.value;
+      }
+      color.setAttribute('onclick','onFavoriteColor(this)');
+
+  })
+
+
+  function onFavoriteColor(id){
+      alert("Wow so you like " +id.value+" more than "+id.value+" now?");
+      lastColor = id.value;
+      [].forEach.call(colors,(col)=>{
+        col.style = `background-color:${id.value}`;
+      })
+  }
+
+  let emps = document.getElementsByClassName('empName');
+  [].forEach.call(emps,(e)=>{
+    e.setAttribute('onmouseover','toggleVis(this)');
+    e.setAttribute('onmouseout','toggleVis(this)');
+  })
+  function toggleVis(id){
+    if (id.style.visibility == 'hidden'){
+      id.style.visibility = 'visible';
+    }
+    else{
+      id.style.visibility = 'hidden';
+    }
+  }
+
+setInterval(()=>{
+  let showTime = document.getElementById('currentTime');
+  let d = new Date();
+  function timeSuff(hour){
+    if (hour >= 12){
+      return 'PM';
+    }
+    else{
+      return 'AM';
+    }
+  }
+  showTime.innerText = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} ${timeSuff(d.getHours())}`;
+},500)
+
+document.getElementById('helloWorld').setAttribute('onclick','delayEvent(this)');
+
+function delayEvent(id){
+  setTimeout(()=>{
+    function randomInt(upper) {
+      return Math.floor(Math.random()*Math.floor(upper));
+}
+    document.getElementById('helloWorld').style.color = `rgb(${randomInt(255)},${randomInt(255)},${randomInt(255)})`;
+  },3000)
 }
 
-
+function walkTheDOM(node, func){
+  
+}
 
 </script>
   
