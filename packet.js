@@ -128,14 +128,67 @@ function isPalindrome(someStr){
     return true;
 }
 
-// 8. Favorite Color Event
-// NOTE: Write unobtrusive Javascript
-// NOTE: This is regarding the favoriteColor radio buttons.
-// When a user selects a color, create an alert with a message similar to:
-// 	"So you like green more than blue now?"
-// In this example, green is the new value and blue is the old value.
-// Make the background color (of all favoriteColor radio buttons) the newly selected favoriteColor
-
+// 8. Shapes
+// Define function: printShape(shape, height, character)
+// shape is a String and is either "Square", "Triangle", "Diamond".
+// height is a Number and is the height of the shape. Assume the number is odd.
+// character is a String that represents the contents of the shape. Assume this String contains just one character.
+// Use a switch statement to determine which shape was passed in.
+// Use the console.log function to print the desired shape.
+// Example for printShape("Square", 3, "%");
+// %%%
+// %%%
+// %%%
+// Example for printShape("Triangle", 3, "$");
+// $
+// $$
+// $$$
+// Example for printShape("Diamond", 5, "*");
+//   *
+//  ***
+// *****
+//  ***
+//   *
+function printShape(shape, height, character){
+    shape = shape.toLowerCase();
+    if (shape === 'square'){
+        for(let i = 0;i<height;i++){
+            let thisLine = '';
+            for(let j = 0;j<height;j++){
+                thisLine+=character;
+             }
+             console.log(thisLine);
+         }
+    }
+    if(shape === 'triangle'){
+        for(let i = 0;i<height;i++){
+            let thisLine ='';
+            for(let j = 0;j<=i;j++){
+                thisLine+=character;
+            }
+            console.log(thisLine);
+        }
+    }
+    if(shape==='diamond'){
+        let counter1 = (height + 1)/2;
+        let counter2 = (height +1)/2;
+        for(let i = 0;i<height;i++){
+            let thisLine = '';
+            for(let j = 0;j<height;j++){
+                if (j === counter1 || j === counter2){
+                        thisLine +=character;
+                }
+                else{
+                    thisLine += " ";
+                }
+            }
+            counter1++;
+            counter2--;
+            console.log(thisLine);
+        }
+    }
+}
+printShape('diamond',7,'*');
 
 // 9. Object literal
 // Define function traverseObject(someObj)
@@ -188,53 +241,53 @@ function getPerson(name,age){
     // Define function getUSA()
     // Find the html element that contains "USA".
     // Print that element's contents.
-    function getUSA(){
-        let eles = [...document.getElementsByTagName("*")];
-        eles.forEach(element => {
-          if(element.childNodes.length === 1 && element.childNodes[0].nodeValue.includes("USA"))
-            console.log(element.childNodes[0].nodeValue)
-        });
-        }
+    // function getUSA(){
+    //     let eles = [...document.getElementsByTagName("*")];
+    //     eles.forEach(element => {
+    //       if(element.childNodes.length === 1 && element.childNodes[0].nodeValue.includes("USA"))
+    //         console.log(element.childNodes[0].nodeValue)
+    //     });
+    //     }
       // 2. Sales
       // Define function getPeopleInSales()
       // Print the names of all the people in the sales department.
   
-      function getPeopleInSales(){
-          let empl = [...document.getElementsByClassName('empName')];
-          let emplStat = [];
-          empl.forEach(element => {
-              if (element.nextElementSibling.innerHTML === "Sales"){
-                  console.log(element.innerHTML);
-              }
-          });
-        }
+    //   function getPeopleInSales(){
+    //       let empl = [...document.getElementsByClassName('empName')];
+    //       let emplStat = [];
+    //       empl.forEach(element => {
+    //           if (element.nextElementSibling.innerHTML === "Sales"){
+    //               console.log(element.innerHTML);
+    //           }
+    //       });
+    //     }
         
       // 3. Click Here
       // Define function getAnchorChildren()
       // Find all anchor elements with a <span> child.
       // Print the contents of <span>
-      function getAnchorChildren(){
-        let anchors = [...document.getElementsByTagName('a')]
-        let anchorChild = [];
-        anchors.forEach(element =>{
-          element.childNodes.forEach(child =>{
-            if (child.nodeName === "SPAN"){
-              console.log(child.innerHTML);
-            }
-          })
-        })
-      }
+    //   function getAnchorChildren(){
+    //     let anchors = [...document.getElementsByTagName('a')]
+    //     let anchorChild = [];
+    //     anchors.forEach(element =>{
+    //       element.childNodes.forEach(child =>{
+    //         if (child.nodeName === "SPAN"){
+    //           console.log(child.innerHTML);
+    //         }
+    //       })
+    //     })
+    //   }
     // 4. Hobbies
     // Define function getHobbies()
     // Find all checked options in the 'skills' select element.
     // Print the value and the contents.
-    function getHobbies(){
-      let elements = document.querySelectorAll('select[name="hobbies"]');
-      let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
-      hobbies.forEach(element => {
-        console.log(element.textContent);
-      });
-    }
+    // function getHobbies(){
+    //   let elements = document.querySelectorAll('select[name="hobbies"]');
+    //   let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
+    //   hobbies.forEach(element => {
+    //     console.log(element.textContent);
+    //   });
+    // }
   
     // 5. Custom Attribute
     // Define function getCustomAttribute()
@@ -242,14 +295,14 @@ function getPerson(name,age){
     // Print the value of the attribute.
     // Print the element that has the attribute.
   
-    function getCustomAttribute(){
-      let elements = document.querySelectorAll('[data-customAttr]');
-      elements.forEach(element => {
-        let val = element.getAttribute('data-customAttr');
-        console.log(val);
-        console.log(element);
-      });
-    }
+    // function getCustomAttribute(){
+    //   let elements = document.querySelectorAll('[data-customAttr]');
+    //   elements.forEach(element => {
+    //     let val = element.getAttribute('data-customAttr');
+    //     console.log(val);
+    //     console.log(element);
+    //   });
+    // }
   
     // 6. Sum Event
     // NOTE: Write unobtrusive Javascript
@@ -262,43 +315,43 @@ function getPerson(name,age){
     // Add <input> element values.
     // Put the sum in the <span> element.
     // If values cannot be added, put "Cannot add" in the <span> element
-    let sumParts = [...document.getElementsByClassName('nums')];
-    sumParts.forEach(element => {
-      element.setAttribute('onchange','onNumberChange(this)');
-    });
+    // let sumParts = [...document.getElementsByClassName('nums')];
+    // sumParts.forEach(element => {
+    //   element.setAttribute('onchange','onNumberChange(this)');
+    // });
   
-    function onNumberChange(id){
-      let elements = document.getElementsByClassName('nums');
-      let numbers = [];
-      [].forEach.call(elements,(element) => {
-        numbers.push(+element.value);
-      });
-      let arentNumbers = numbers.some(num=>{
-        if(typeof(num)!=='number' || Number.isNaN(num)){
-          return true;
-        }
-      });
-      let e = document.getElementById('sum');
-      if (arentNumbers === false){
-        e.innerText = numbers[0]+numbers[1];
-      }
-      else{
-        e.innerText='Cannot add';
-      }
-    }
+    // function onNumberChange(id){
+    //   let elements = document.getElementsByClassName('nums');
+    //   let numbers = [];
+    //   [].forEach.call(elements,(element) => {
+    //     numbers.push(+element.value);
+    //   });
+    //   let arentNumbers = numbers.some(num=>{
+    //     if(typeof(num)!=='number' || Number.isNaN(num)){
+    //       return true;
+    //     }
+    //   });
+    //   let e = document.getElementById('sum');
+    //   if (arentNumbers === false){
+    //     e.innerText = numbers[0]+numbers[1];
+    //   }
+    //   else{
+    //     e.innerText='Cannot add';
+    //   }
+    // }
   
     // 7. Skills Event
     // NOTE: Write unobtrusive Javascript
     // When user selects a skill, create an alert with a message similar to:
     // 	"Are you sure CSS is one of your skills?"
     // NOTE: no alert should appear when user deselects a skill.
-    let skillset = document.querySelector('select[name="skills"]');
-    let skillsubset = skillset.childNodes;
-    skillset.setAttribute('onchange','onSkillChange(this)');
+    // let skillset = document.querySelector('select[name="skills"]');
+    // let skillsubset = skillset.childNodes;
+    // skillset.setAttribute('onchange','onSkillChange(this)');
   
-    function onSkillChange(id){
-      alert("Are you sure "+id.value+" is a skill of yours?");
-    }
+    // function onSkillChange(id){
+    //   alert("Are you sure "+id.value+" is a skill of yours?");
+    // }
   
     // 8. Favorite Color Event
     // NOTE: Write unobtrusive Javascript
@@ -307,75 +360,75 @@ function getPerson(name,age){
     // 	"So you like green more than blue now?"
     // In this example, green is the new value and blue is the old value.
     // Make the background color (of all favoriteColor radio buttons) the newly selected favoriteColor
-    let lastColor = null;
-    let colors = document.querySelectorAll("input[name='favoriteColor']");
-    [].forEach.call(colors,(color)=>{
-        if (color.checked){
-            lastColor = color.value;
-        }
-        color.setAttribute('onclick','onFavoriteColor(this)');
+    // let lastColor = null;
+    // let colors = document.querySelectorAll("input[name='favoriteColor']");
+    // [].forEach.call(colors,(color)=>{
+    //     if (color.checked){
+    //         lastColor = color.value;
+    //     }
+    //     color.setAttribute('onclick','onFavoriteColor(this)');
   
-    })
-    function onFavoriteColor(id){
-        alert("Wow so you like " +id.value+" more than "+id.value+" now?");
-        lastColor = id.value;
-        [].forEach.call(colors,(col)=>{
-          col.style = `background-color:${id.value}`;
-        })
-    }
+    // })
+    // function onFavoriteColor(id){
+    //     alert("Wow so you like " +id.value+" more than "+id.value+" now?");
+    //     lastColor = id.value;
+    //     [].forEach.call(colors,(col)=>{
+    //       col.style = `background-color:${id.value}`;
+    //     })
+    // }
   
     // 9. Show/Hide Event
     // NOTE: Write unobtrusive Javascript
     // When user hovers over an employees name:
     // 	Hide the name if shown.
     // 	Show the name if hidden
-    let emps = document.getElementsByClassName('empName');
-    [].forEach.call(emps,(e)=>{
-      e.setAttribute('onmouseover','toggleVis(this)');
-      e.setAttribute('onmouseout','toggleVis(this)');
-    })
-    function toggleVis(id){
-      if (id.style.visibility == 'hidden'){
-        id.style.visibility = 'visible';
-      }
-      else{
-        id.style.visibility = 'hidden';
-      }
-    }
+    // let emps = document.getElementsByClassName('empName');
+    // [].forEach.call(emps,(e)=>{
+    //   e.setAttribute('onmouseover','toggleVis(this)');
+    //   e.setAttribute('onmouseout','toggleVis(this)');
+    // })
+    // function toggleVis(id){
+    //   if (id.style.visibility == 'hidden'){
+    //     id.style.visibility = 'visible';
+    //   }
+    //   else{
+    //     id.style.visibility = 'hidden';
+    //   }
+    // }
   
   // 10. Current Time
   // Regarding this element:
   // 	<h5 id="currentTime"></h5>
   // Show the current time in this element in this format: 9:05:23 AM
   // The time should be accurate to the second without having to reload the page.
-  setInterval(()=>{
-    let showTime = document.getElementById('currentTime');
-    let d = new Date();
-    function timeSuff(hour){
-      if (hour >= 12){
-        return 'PM';
-      }
-      else{
-        return 'AM';
-      }
-    }
-    showTime.innerText = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} ${timeSuff(d.getHours())}`;
-  },500)
+//   setInterval(()=>{
+//     let showTime = document.getElementById('currentTime');
+//     let d = new Date();
+//     function timeSuff(hour){
+//       if (hour >= 12){
+//         return 'PM';
+//       }
+//       else{
+//         return 'AM';
+//       }
+//     }
+//     showTime.innerText = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} ${timeSuff(d.getHours())}`;
+//   },500)
   
-  // 11. Delay
-  // Regarding this element:
-  // 	<p id="helloWorld">Hello, World!</p>
-  // Three seconds after a user clicks on this element, change the text to a random color.
-  document.getElementById('helloWorld').setAttribute('onclick','delayEvent(this)');
+//   // 11. Delay
+//   // Regarding this element:
+//   // 	<p id="helloWorld">Hello, World!</p>
+//   // Three seconds after a user clicks on this element, change the text to a random color.
+//   document.getElementById('helloWorld').setAttribute('onclick','delayEvent(this)');
   
-  function delayEvent(id){
-    setTimeout(()=>{
-      function randomInt(upper) {
-        return Math.floor(Math.random()*Math.floor(upper));
-  }
-      document.getElementById('helloWorld').style.color = `rgb(${randomInt(255)},${randomInt(255)},${randomInt(255)})`;
-    },3000)
-  }
+//   function delayEvent(id){
+//     setTimeout(()=>{
+//       function randomInt(upper) {
+//         return Math.floor(Math.random()*Math.floor(upper));
+//   }
+//       document.getElementById('helloWorld').style.color = `rgb(${randomInt(255)},${randomInt(255)},${randomInt(255)})`;
+//     },3000)
+//   }
   
   
   // 12. Walk the DOM
