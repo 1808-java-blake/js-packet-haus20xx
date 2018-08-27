@@ -99,7 +99,6 @@
 	  
   <script type="text/javascript">
     //TODO: Javascript homework
-    
     function getUSA(){
       let eles = [...document.getElementsByTagName("*")];
       eles.forEach(element => {
@@ -107,8 +106,6 @@
           console.log(element.childNodes[0].nodeValue)
       });
     }
-
-    
 function getPeopleInSales(){
     let empl = [...document.getElementsByClassName('empName')];
     let emplStat = [];
@@ -118,7 +115,6 @@ function getPeopleInSales(){
         }
     });
 }
-
 function getAnchorChildren(){
   let anchors = [...document.getElementsByTagName('a')]
   let anchorChild = [];
@@ -130,7 +126,49 @@ function getAnchorChildren(){
     })
   })
 }
-getAnchorChildren();
+
+function getHobbies(){
+  let elements = document.querySelectorAll('select[name="hobbies"]');
+  let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
+  hobbies.forEach(element => {
+    console.log(element.textContent);
+  });
+}
+
+function getCustomAttribute(){
+  let elements = document.querySelectorAll('[data-customAttr]');
+  elements.forEach(element => {
+    let val = element.getAttribute('data-customAttr');
+    console.log(val);
+    console.log(element);
+  });
+}
+
+let sumParts = [...document.getElementsByClassName('nums')];
+sumParts.forEach(element => {
+  element.setAttribute('onchange','onChange(this)');
+});
+
+function onChange(id){
+  let elements = document.getElementsByClassName('nums');
+  let numbers = [];
+  [].forEach.call(elements,(element) => {
+    numbers.push(+element.value);
+  });
+  let arentNumbers = numbers.some(num=>{
+    if(typeof(num)!=='number' || Number.isNaN(num)){
+      return true;
+    }
+  });
+  let e = document.getElementById('sum');
+  if (arentNumbers === false){
+    e.innerText = numbers[0]+numbers[1];
+  }
+  else{
+    e.innerText='Cannot add';
+  }
+}
+
 
 
 </script>

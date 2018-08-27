@@ -133,7 +133,22 @@ function getPeopleInSales(){
 }
 
 function getAnchorChildren(){
-    
-}
+    let anchors = [...document.getElementsByTagName('a')]
+    let anchorChild = [];
+    anchors.forEach(element =>{
+      element.childNodes.forEach(child =>{
+        if (child.nodeName === "SPAN"){
+          console.log(child.innerHTML);
+        }
+      })
+    })
+  }
 
+  function getHobbies(){
+    let elements = document.querySelectorAll('select[name="hobbies"]');
+    let hobbies = elements[0].querySelectorAll('option[selected="selected"]');
+    hobbies.forEach(element => {
+      console.log(element.textContent);
+    });
+  }
 
