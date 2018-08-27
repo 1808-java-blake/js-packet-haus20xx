@@ -151,50 +151,55 @@ function isPalindrome(someStr){
 //   *
 function printShape(shape, height, character){
     shape = shape.toLowerCase();
-    if (shape === 'square'){
-        for(let i = 0;i<height;i++){
-            let thisLine = '';
-            for(let j = 0;j<height;j++){
-                thisLine+=character;
-             }
-             console.log(thisLine);
-         }
-    }
-    if(shape === 'triangle'){
-        for(let i = 0;i<height;i++){
-            let thisLine ='';
-            for(let j = 0;j<=i;j++){
-                thisLine+=character;
+    let thisLine = '';
+    switch (shape) {
+        case 'square':
+            for(let i = 0;i<height;i++){
+                thisLine = '';
+                for(let j = 0;j<height;j++){
+                    thisLine+=character;
+                }
+                console.log(thisLine);
             }
-            console.log(thisLine);
-        }
-    }
-    if(shape==='diamond'){
-        let counter1 = (height +1)/2;
-        let counter2 = (height +1)/2;
-        for(let i = 0;i<height;i++){
-            let thisLine = '';
-            for(let j = 0;j<=height;j++){
-                if (j === counter1 || j === counter2){
-                        thisLine +=character;
+                break;
+        case 'triangle':
+            for(let i = 0;i<height;i++){
+                thisLine ='';
+                for(let j = 0;j<=i;j++){
+                    thisLine+=character;
+                }
+                console.log(thisLine);
+            }
+            break;
+        case 'diamond':
+            let counter1 = (height +1)/2;
+            let counter2 = (height +1)/2;
+            for(let i = 0;i<height;i++){
+                thisLine = '';
+                for(let j = 0;j<=height;j++){
+                    if (j === counter1 || j === counter2){
+                            thisLine +=character;
+                    }
+                    else{
+                        thisLine += " ";
+                    }
+                }
+                if(i >((height -1)/2)-1){
+                    counter1--;
+                    counter2++;
                 }
                 else{
-                    thisLine += " ";
+                counter1++;
+                counter2--;
                 }
+                console.log(thisLine);
             }
-            if(i >((height -1)/2)-1){
-                counter1--;
-                counter2++;
-            }
-            else{
-            counter1++;
-            counter2--;
-            }
-            console.log(thisLine);
-        }
+            break;
+        default:
+            break;
     }
+   
 }
-printShape('diamond',7,'*');
 
 // 9. Object literal
 // Define function traverseObject(someObj)
