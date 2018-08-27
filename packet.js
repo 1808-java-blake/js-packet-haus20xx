@@ -170,11 +170,11 @@ function printShape(shape, height, character){
         }
     }
     if(shape==='diamond'){
-        let counter1 = (height + 1)/2;
+        let counter1 = (height +1)/2;
         let counter2 = (height +1)/2;
         for(let i = 0;i<height;i++){
             let thisLine = '';
-            for(let j = 0;j<height;j++){
+            for(let j = 0;j<=height;j++){
                 if (j === counter1 || j === counter2){
                         thisLine +=character;
                 }
@@ -182,8 +182,14 @@ function printShape(shape, height, character){
                     thisLine += " ";
                 }
             }
+            if(i >((height -1)/2)-1){
+                counter1--;
+                counter2++;
+            }
+            else{
             counter1++;
             counter2--;
+            }
             console.log(thisLine);
         }
     }
